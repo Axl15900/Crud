@@ -1,0 +1,65 @@
+﻿@model Web.Models.Empleado
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Hola Mundo</h1>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <input type="text" class="form-control" id="Nombre" placeholder="Nombre">
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" id="Documento" placeholder="Documento">
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" id="Area" placeholder="Area">
+        </div>
+    </div>
+    <div class="row"style="margin-top: 2%;">
+        <div class="col-1">
+            <button type="button" class="btn btn-primary" id="Crear">Crear</button>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $("#Crear").on('click', function () {
+
+        var Nombre = $("#Nombre").val();
+        var Documento = $("#Documento").val();
+        var Area = $("#Area").val();
+
+
+        $.ajax({
+            type: "POST",
+            url: "Carga/Carga",
+            data: {
+                Nombre : Nombre,
+                Documento : Documento,
+                Area: Area
+            },
+            success: function (data) { 
+            
+                if (data.ex) {
+                    alert("Mal");
+                } else { 
+                    alert("Guardado");
+                    location.reload();
+                }
+
+            }
+        });
+
+        
+
+    });
+    
+
+
+</script>
+
